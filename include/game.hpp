@@ -5,9 +5,15 @@
 
     class Player {
         public:
-            sf::RectangleShape hitbox;
+            float accel;
+            float gravity_factor;
+            float rotation;
+            bool is_boosting;
+            sf::RectangleShape body;
+            sf::RectangleShape booster;
 
             Player(void);
+            void Display(sf::RenderWindow *window);
     };
 
     class Game {

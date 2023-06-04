@@ -7,6 +7,7 @@ int event(Game *game)
         if (event.type == sf::Event::Closed) {
             game->window->close();
         }
+        player_event(game, &event);
     }
     return 0;
 }

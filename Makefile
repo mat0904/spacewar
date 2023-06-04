@@ -9,8 +9,10 @@ MAIN_SRC	=	src/main.cpp
 
 FILE_SRC	=	src/spacewar.cpp \
 				src/gloop.cpp \
+				src/display.cpp \
 				\
 				src/event/event.cpp \
+				src/event/player_event.cpp \
 				\
 				src/game/game.cpp \
 				\
