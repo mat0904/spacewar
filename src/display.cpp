@@ -2,8 +2,7 @@
 
 int display(Game *game)
 {
-    game->player->body.setRotation(game->player->rotation);
-    game->player->booster.setRotation(game->player->rotation);
+    game->player->set_rotation();
     game->player->Display(game->window);
     return 0;
 }

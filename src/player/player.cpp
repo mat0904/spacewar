@@ -24,6 +24,20 @@ Player::Player(void)
 void Player::Display(sf::RenderWindow *window)
 {
     window->draw(body);
-    if (is_boosting == true)
+    if (z_button == true)
         window->draw(booster);
+}
+
+void Player::set_rotation(void)
+{
+    if (q_button == true && d_button == true)
+        return;
+    if (q_button == true) {
+        rotation -= 1;
+    }
+    if (d_button == true) {
+        rotation += 1;
+    }
+    booster.setRotation(rotation);
+    body.setRotation(rotation);
 }

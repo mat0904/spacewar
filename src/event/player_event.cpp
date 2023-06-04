@@ -1,22 +1,46 @@
 #include "../../include/prototype.hpp"
 
-int player_event(Game *game, sf::Event *event)
+static int player_event_pressed(Game *game, sf::Event *event)
 {
     if (event->type == sf::Event::KeyPressed) {
         if (event->key.code == sf::Keyboard::D) {
-            game->player->rotation += 5;
+            game->player->d_button = true;
         }
         if (event->key.code == sf::Keyboard::Q) {
-            game->player->rotation -= 5;
+            game->player->q_button = true;
         }
         if (event->key.code == sf::Keyboard::Z) {
-            game->player->is_boosting = true;
+            game->player->z_button = true;
+        }
+        if (event->key.code == sf::Keyboard::S) {
+            game->player->s_button = true;
         }
     }
+    return 0;
+}
+
+static int player_event_released(Game *game, sf::Event *event)
+{
     if (event->type == sf::Event::KeyReleased) {
+        if (event->key.code == sf::Keyboard::D) {
+            game->player->d_button = false;
+        }
+        if (event->key.code == sf::Keyboard::Q) {
+            game->player->q_button = false;
+        }
         if (event->key.code == sf::Keyboard::Z) {
-            game->player->is_boosting = false;
+            game->player->z_button = false;
+        }
+        if (event->key.code == sf::Keyboard::S) {
+            game->player->s_button = false;
         }
     }
+    return 0;
+}
+
+int player_event(Game *game, sf::Event *event)
+{
+    player_event_released(game, event);
+    player_event_pressed(game, event);
     return 0;
 }
