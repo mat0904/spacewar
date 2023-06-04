@@ -24,19 +24,8 @@ Player::Player(void)
 void Player::display(sf::RenderWindow *window)
 {
     window->draw(body);
+    if (z_button == true)
         window->draw(booster);
-}
-
-void Player::set_speed(void)
-{
-    if (z_button == true && s_button == true)
-        return;
-    if (z_button == true) {
-        af += (af >= 10) ? 0 : 0.1;
-    }
-    if (s_button == true) {
-        af -= (af <= -10) ? 0 : 0.1;
-    }
 }
 
 void Player::set_rotation(void)
@@ -45,8 +34,6 @@ void Player::set_rotation(void)
         return;
     if (q_button == true) {
         rotation -= 1;
-        if (rotation < 0)
-            rotation = 359;
     }
     if (d_button == true) {
         rotation += 1;
@@ -58,11 +45,12 @@ void Player::set_rotation(void)
 
 void Player::calcul_move_vector(void)
 {
-    move_vector.x = cos(rotation) * af;
-    move_vector.y = sin(rotation) * af;
-    printf("X= %f\nY= %f\n\n", move_vector.x, move_vector.y);
-    //booster.move(move_vector);
-    //body.move(move_vector);
+    if (z_button == true) {
+        move_vector.x = move_vector.x + (cos(rotation * (M_PI / 180)) / 100);
+        move_vector.y = move_vector.y + (sin(rotation * (M_PI / 180)) / 100);
+    }
+    booster.move(move_vector);
+    body.move(move_vector);
 }
 
 void Player::detect_border(void)

@@ -19,7 +19,6 @@
             Player(void);
             void display(sf::RenderWindow *window);
             void set_rotation(void);
-            void set_speed(void);
             void calcul_move_vector(void);
             void detect_border(void);
     };

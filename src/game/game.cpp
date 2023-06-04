@@ -1,5 +1,4 @@
 #include "../../include/prototype.hpp"
-#include <SFML/Window/WindowStyle.hpp>
 
 Game::Game()
 {
