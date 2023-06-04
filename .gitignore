@@ -1,6 +1,8 @@
 # Prerequisites
 *.d
 
+spacewar
+
 # Compiled Object files
 *.slo
 *.lo
