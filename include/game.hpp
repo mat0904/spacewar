@@ -9,15 +9,16 @@
             bool s_button;
             bool q_button;
             bool d_button;
-            float accel;
-            float gravity_factor;
+            float af;
+            float gf;
             float rotation;
             sf::RectangleShape body;
             sf::RectangleShape booster;
 
             Player(void);
-            void Display(sf::RenderWindow *window);
+            void display(sf::RenderWindow *window);
             void set_rotation(void);
+            void set_speed(void);
     };
 
     class Game {

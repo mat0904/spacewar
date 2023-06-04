@@ -2,8 +2,8 @@
 
 Player::Player(void)
 {
-    accel = 0;
-    gravity_factor = 0;
+    af = 0;
+    gf = 0;
     rotation = 0;
     body = sf::RectangleShape(sf::Vector2f(20, 20));
     booster = sf::RectangleShape(sf::Vector2f(20, 10));
@@ -21,11 +21,23 @@ Player::Player(void)
     booster.setPosition(sf::Vector2f(100, 100));
 }
 
-void Player::Display(sf::RenderWindow *window)
+void Player::display(sf::RenderWindow *window)
 {
     window->draw(body);
     if (z_button == true)
         window->draw(booster);
+}
+
+void Player::set_speed(void)
+{
+    if (z_button == true && s_button == true)
+        return;
+    if (z_button == true) {
+        af += (af >= 10) ? 0 : 1;
+    }
+    if (s_button == true) {
+        af -= (af <= -10) ? 0 : 1;
+    }
 }
 
 void Player::set_rotation(void)

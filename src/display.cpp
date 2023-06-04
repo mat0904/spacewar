@@ -3,6 +3,7 @@
 int display(Game *game)
 {
     game->player->set_rotation();
-    game->player->Display(game->window);
+    game->player->set_speed();
+    game->player->display(game->window);
     return 0;
 }
