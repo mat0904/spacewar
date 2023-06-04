@@ -12,6 +12,7 @@
             float af;
             float gf;
             float rotation;
+            sf::Vector2f move_vector;
             sf::RectangleShape body;
             sf::RectangleShape booster;
 
@@ -19,6 +20,8 @@
             void display(sf::RenderWindow *window);
             void set_rotation(void);
             void set_speed(void);
+            void calcul_move_vector(void);
+            void detect_border(void);
     };
 
     class Game {

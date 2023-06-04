@@ -6,7 +6,7 @@ Player::Player(void)
     gf = 0;
     rotation = 0;
     body = sf::RectangleShape(sf::Vector2f(20, 20));
-    booster = sf::RectangleShape(sf::Vector2f(20, 10));
+    booster = sf::RectangleShape(sf::Vector2f(10, 20));
 
     body.setFillColor(sf::Color::Transparent);
     body.setOutlineColor(sf::Color::Green);
@@ -17,14 +17,13 @@ Player::Player(void)
     booster.setFillColor(sf::Color::Transparent);
     booster.setOutlineColor(sf::Color::Yellow);
     booster.setOutlineThickness(2);
-    booster.setOrigin(sf::Vector2f(10, -12));
+    booster.setOrigin(sf::Vector2f(22, 10));
     booster.setPosition(sf::Vector2f(100, 100));
 }
 
 void Player::display(sf::RenderWindow *window)
 {
     window->draw(body);
-    if (z_button == true)
         window->draw(booster);
 }
 
@@ -33,10 +32,10 @@ void Player::set_speed(void)
     if (z_button == true && s_button == true)
         return;
     if (z_button == true) {
-        af += (af >= 10) ? 0 : 1;
+        af += (af >= 10) ? 0 : 0.1;
     }
     if (s_button == true) {
-        af -= (af <= -10) ? 0 : 1;
+        af -= (af <= -10) ? 0 : 0.1;
     }
 }
 
@@ -46,10 +45,39 @@ void Player::set_rotation(void)
         return;
     if (q_button == true) {
         rotation -= 1;
+        if (rotation < 0)
+            rotation = 359;
     }
     if (d_button == true) {
         rotation += 1;
     }
+    rotation = (int)rotation % 360;
     booster.setRotation(rotation);
     body.setRotation(rotation);
+}
+
+void Player::calcul_move_vector(void)
+{
+    move_vector.x = cos(rotation) * af;
+    move_vector.y = sin(rotation) * af;
+    printf("X= %f\nY= %f\n\n", move_vector.x, move_vector.y);
+    //booster.move(move_vector);
+    //body.move(move_vector);
+}
+
+void Player::detect_border(void)
+{
+    sf::Vector2f vector = body.getPosition();
+    if (vector.x >= 1920) {
+        vector.x = 0;
+    } else if (vector.x <= 0) {
+        vector.x = 1920;
+    }
+    if (vector.y >= 1080) {
+        vector.y = 0;
+    } else if (vector.y <= 0) {
+        vector.y = 1080;
+    }
+    body.setPosition(vector);
+    booster.setPosition(vector);
 }
