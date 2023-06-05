@@ -32,10 +32,10 @@ Ship::Ship(void)
 
 void Ship::rotate(float angle)
 {
-    booster.rotate(angle);
-    left_booster.rotate(angle);
-    right_booster.rotate(angle);
-    body.rotate(angle);
+    booster.setRotation(angle);
+    left_booster.setRotation(angle);
+    right_booster.setRotation(angle);
+    body.setRotation(angle);
 }
 
 void Ship::move(sf::Vector2f move_vector)

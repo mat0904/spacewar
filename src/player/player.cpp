@@ -13,6 +13,8 @@ Player::Player(void) : Input()
 {
     rotation = 0;
     ship = Ship();
+    view = sf::View();
+    view.setSize(sf::Vector2f(1920, 1080));
 }
 
 void Player::display(sf::RenderWindow *window)
@@ -64,20 +66,4 @@ void Player::calcul_move_vector(void)
     }
     this->calcul_gravity_vector();
     ship.move(move_vector);
-}
-
-void Player::detect_border(void)
-{
-    sf::Vector2f vector = ship.body.getPosition();
-    if (vector.x >= 1920) {
-        vector.x = 0;
-    } else if (vector.x <= 0) {
-        vector.x = 1920;
-    }
-    if (vector.y >= 1080) {
-        vector.y = 0;
-    } else if (vector.y <= 0) {
-        vector.y = 1080;
-    }
-    ship.set_position(vector);
 }

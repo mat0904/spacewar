@@ -35,6 +35,7 @@
         public:
             float rotation;
             Ship ship;
+            sf::View view;
 
             sf::Vector2f move_vector;
 
@@ -43,7 +44,6 @@
             void set_rotation(void);
             void calcul_gravity_vector(void);
             void calcul_move_vector(void);
-            void detect_border(void);
             void booster_break(void);
     };
 
