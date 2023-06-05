@@ -26,22 +26,19 @@ FILE_OBJ	=	$(FILE_SRC:.cpp=.o)
 MAIN_OBJ	=	$(MAIN_SRC:.cpp=.o)
 
 CC	=	g++
-CFLAGS	= -Wall -Wextra
+CFLAGS	= -Wall -Wextra -g3
 SANITIZE	=	-g3 -fsanitize=address
 LIB	=	-lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
-LDFLAGS	=	$(LIB)
+LDFLAGS	=	$(LIB) -g3
 COVERAGE	=	--coverage -lcriterion
 EXE	=	spacewar
 
 all:	$(EXE)
 
-%.o:	%.c
+%.o:	%.cpp
 		$(CC) -o $@ -c $< $(CFLAGS)
 
-%_test.o:	%.c
-			$(CC) -o $@ -c $<
-
-main.o:	main.c
+main.o:	main.cpp
 		$(CC) -o $@ -c $< $(CFLAGS)
 
 $(EXE):	$(FILE_OBJ) $(MAIN_OBJ)

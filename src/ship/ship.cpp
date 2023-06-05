@@ -2,6 +2,9 @@
 
 Ship::Ship(void)
 {
+    move_vector = sf::Vector2f(0, 0);
+    angle = 0;
+
     body = sf::RectangleShape(sf::Vector2f(20, 20));
     booster = sf::RectangleShape(sf::Vector2f(10, 20));
     left_booster = sf::RectangleShape(sf::Vector2f(5, 5));

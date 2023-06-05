@@ -13,7 +13,7 @@
             sf::Text angle;
 
             Hud(void);
-            void update(float angle_input, float speed_input);
+            void update(float angle_input, float speed_input, sf::View *view);
             void display(sf::RenderWindow *window);
     };
 
@@ -61,7 +61,6 @@
     class Game {
         public:
             sf::RenderWindow *window;
-            sf::CircleShape star;
             sf::Clock movement_clock;
             Player *player;
 
