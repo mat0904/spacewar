@@ -6,6 +6,17 @@
 
     class Player;
 
+    class Hud {
+        public:
+            sf::Font font;
+            sf::Text speed;
+            sf::Text angle;
+
+            Hud(void);
+            void update(float angle_input, float speed_input);
+            void display(sf::RenderWindow *window);
+    };
+
     class Ship {
         public:
             sf::RectangleShape body;
@@ -13,9 +24,12 @@
             sf::RectangleShape left_booster;
             sf::RectangleShape right_booster;
 
+            sf::Vector2f move_vector;
+            float angle;
+
             Ship(void);
-            void move(sf::Vector2f move_ship);
-            void rotate(float angle);
+            void move(void);
+            void rotate(void);
             void display(sf::RenderWindow *window, Player *player);
             void set_position(sf::Vector2f position);
     };
@@ -33,16 +47,13 @@
 
     class Player : public Input {
         public:
-            float rotation;
             Ship ship;
+            Hud hud;
             sf::View view;
-
-            sf::Vector2f move_vector;
 
             Player(void);
             void display(sf::RenderWindow *window);
             void set_rotation(void);
-            void calcul_gravity_vector(void);
             void calcul_move_vector(void);
             void booster_break(void);
     };

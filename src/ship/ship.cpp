@@ -30,7 +30,7 @@ Ship::Ship(void)
     right_booster.setPosition(sf::Vector2f(100, 100));
 }
 
-void Ship::rotate(float angle)
+void Ship::rotate(void)
 {
     booster.setRotation(angle);
     left_booster.setRotation(angle);
@@ -38,7 +38,7 @@ void Ship::rotate(float angle)
     body.setRotation(angle);
 }
 
-void Ship::move(sf::Vector2f move_vector)
+void Ship::move(void)
 {
     booster.move(move_vector);
     left_booster.move(move_vector);
