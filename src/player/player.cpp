@@ -2,30 +2,13 @@
 
 Player::Player(void)
 {
-    af = 0;
-    gf = 0;
     rotation = 0;
-    body = sf::RectangleShape(sf::Vector2f(20, 20));
-    booster = sf::RectangleShape(sf::Vector2f(10, 20));
-
-    body.setFillColor(sf::Color::Transparent);
-    body.setOutlineColor(sf::Color::Green);
-    body.setOutlineThickness(2);
-    body.setOrigin(sf::Vector2f(10, 10));
-    body.setPosition(sf::Vector2f(100, 100));
-
-    booster.setFillColor(sf::Color::Transparent);
-    booster.setOutlineColor(sf::Color::Yellow);
-    booster.setOutlineThickness(2);
-    booster.setOrigin(sf::Vector2f(22, 10));
-    booster.setPosition(sf::Vector2f(100, 100));
+    ship = Ship();
 }
 
 void Player::display(sf::RenderWindow *window)
 {
-    window->draw(body);
-    if (z_button == true)
-        window->draw(booster);
+    ship.display(window, this);
 }
 
 void Player::set_rotation(void)
@@ -39,8 +22,27 @@ void Player::set_rotation(void)
         rotation += 1;
     }
     rotation = (int)rotation % 360;
-    booster.setRotation(rotation);
-    body.setRotation(rotation);
+    ship.rotate(rotation);
+}
+
+void Player::calcul_gravity_vector(void)
+{
+    return;
+    /*sf::Vector2f mid = {500, 500};
+    sf::Vector2f pos = body.getPosition();
+    sf::Vector2f distance = {mid.x - pos.x, mid.y - pos.y};
+    distance.x *= 5;
+    distance.y *= 5;
+    move_vector.x += 1 / distance.x;
+    move_vector.y += 1 / distance.y;*/
+}
+
+void Player::booster_break(void)
+{
+    if (space_button == true) {
+        move_vector.x /= 1.01;
+        move_vector.y /= 1.01;
+    }
 }
 
 void Player::calcul_move_vector(void)
@@ -49,13 +51,13 @@ void Player::calcul_move_vector(void)
         move_vector.x = move_vector.x + (cos(rotation * (M_PI / 180)) / 100);
         move_vector.y = move_vector.y + (sin(rotation * (M_PI / 180)) / 100);
     }
-    booster.move(move_vector);
-    body.move(move_vector);
+    this->calcul_gravity_vector();
+    ship.move(move_vector);
 }
 
 void Player::detect_border(void)
 {
-    sf::Vector2f vector = body.getPosition();
+    sf::Vector2f vector = ship.body.getPosition();
     if (vector.x >= 1920) {
         vector.x = 0;
     } else if (vector.x <= 0) {
@@ -66,6 +68,5 @@ void Player::detect_border(void)
     } else if (vector.y <= 0) {
         vector.y = 1080;
     }
-    body.setPosition(vector);
-    booster.setPosition(vector);
+    ship.set_position(vector);
 }

@@ -16,6 +16,8 @@ FILE_SRC	=	src/spacewar.cpp \
 				\
 				src/game/game.cpp \
 				\
+				src/ship/ship.cpp \
+				\
 				src/player/player.cpp
 
 FILE_OBJ	=	$(FILE_SRC:.cpp=.o)
@@ -42,6 +44,9 @@ main.o:	main.c
 
 $(EXE):	$(FILE_OBJ) $(MAIN_OBJ)
 		$(CC) -o $(EXE) $(FILE_OBJ) $(MAIN_OBJ) $(LDFLAGS)
+
+RUN:	$(EXE)
+		./$(EXE)
 
 sanitize:	$(FILE_OBJ) $(MAIN_OBJ)
 			$(CC) -o $(EXE) $^ $(LDFLAGS)

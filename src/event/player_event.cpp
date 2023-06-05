@@ -15,6 +15,9 @@ static int player_event_pressed(Game *game, sf::Event *event)
         if (event->key.code == sf::Keyboard::S) {
             game->player->s_button = true;
         }
+        if (event->key.code == sf::Keyboard::Space) {
+            game->player->space_button = true;
+        }
     }
     return 0;
 }
@@ -33,6 +36,9 @@ static int player_event_released(Game *game, sf::Event *event)
         }
         if (event->key.code == sf::Keyboard::S) {
             game->player->s_button = false;
+        }
+        if (event->key.code == sf::Keyboard::Space) {
+            game->player->space_button = false;
         }
     }
     return 0;
