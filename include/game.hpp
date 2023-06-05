@@ -27,6 +27,8 @@
             bool q_button;
             bool d_button;
             bool space_button;
+
+            Input(void);
     };
 
     class Player : public Input {
@@ -49,6 +51,7 @@
         public:
             sf::RenderWindow *window;
             sf::CircleShape star;
+            sf::Clock movement_clock;
             Player *player;
 
             Game(void);

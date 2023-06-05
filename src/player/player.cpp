@@ -1,6 +1,15 @@
 #include "../../include/prototype.hpp"
 
-Player::Player(void)
+Input::Input(void)
+{
+    z_button = false;
+    q_button = false;
+    d_button = false;
+    s_button = false;
+    space_button = false;
+}
+
+Player::Player(void) : Input()
 {
     rotation = 0;
     ship = Ship();
@@ -21,7 +30,9 @@ void Player::set_rotation(void)
     if (d_button == true) {
         rotation += 1;
     }
-    rotation = (int)rotation % 360;
+    if (q_button == true || d_button == true) {
+        rotation = (int)rotation % 360;
+    }
     ship.rotate(rotation);
 }
 
