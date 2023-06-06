@@ -6,14 +6,28 @@
 
     class Player;
 
+    class Radar {
+        public:
+            sf::CircleShape background;
+            sf::VertexArray lines;
+            int balayeur_angle;
+            sf::VertexArray balayeur;
+
+
+            Radar(void);
+            void display(sf::RenderWindow *window);
+            void update(float rotation, sf::View *view);
+            void update_balayeur(sf::View *view);
+    };
+
     class Hud {
         public:
             sf::Font font;
-            sf::Text speed;
-            sf::Text angle;
+            sf::Text info;
+            Radar radar;
 
             Hud(void);
-            void update(float angle_input, float speed_input, sf::View *view);
+            void update(float angle_input, sf::Vector2f mv, sf::View *view);
             void display(sf::RenderWindow *window);
     };
 
@@ -60,11 +74,15 @@
 
     class Game {
         public:
+            sf::RenderTexture pattern;
+            sf::Sprite background;
             sf::RenderWindow *window;
             sf::Clock movement_clock;
             Player *player;
 
             Game(void);
+            void create_background(std::string texture_path);
+            void draw_background(void);
     };
 
 #endif //GAME_HPP_

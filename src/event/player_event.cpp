@@ -25,21 +25,20 @@ static int player_event_pressed(Game *game, sf::Event *event)
 static int player_event_released(Game *game, sf::Event *event)
 {
     if (event->type == sf::Event::KeyReleased) {
-        if (event->key.code == sf::Keyboard::D) {
+        if (event->key.code == sf::Keyboard::D)
             game->player->d_button = false;
-        }
-        if (event->key.code == sf::Keyboard::Q) {
+        if (event->key.code == sf::Keyboard::Q)
             game->player->q_button = false;
-        }
-        if (event->key.code == sf::Keyboard::Z) {
+        if (event->key.code == sf::Keyboard::Z)
             game->player->z_button = false;
-        }
-        if (event->key.code == sf::Keyboard::S) {
+        if (event->key.code == sf::Keyboard::S)
             game->player->s_button = false;
-        }
-        if (event->key.code == sf::Keyboard::Space) {
+        if (event->key.code == sf::Keyboard::Space)
             game->player->space_button = false;
-        }
+        if (event->key.code == sf::Keyboard::Right)
+            game->player->ship.angle = 0;
+        if (event->key.code == sf::Keyboard::Left)
+            game->player->ship.angle = 180;
     }
     return 0;
 }

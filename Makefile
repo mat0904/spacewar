@@ -17,6 +17,7 @@ FILE_SRC	=	src/spacewar.cpp \
 				src/game/game.cpp \
 				\
 				src/hud/hud.cpp \
+				src/hud/radar.cpp \
 				\
 				src/ship/ship.cpp \
 				\
