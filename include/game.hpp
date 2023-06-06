@@ -14,7 +14,6 @@
             sf::CircleShape direction;
             sf::CircleShape reverse_direction;
 
-
             Radar(void);
             void display(sf::RenderWindow *window);
             sf::Vector2f get_circle_position(sf::Vector2f radar_pos,
@@ -43,10 +42,13 @@
 
             sf::Vector2f move_vector;
             float angle;
+            float direction_angle;
+            float reverse_direction_angle;
 
             Ship(void);
             void move(void);
             void rotate(void);
+            void update_info(void);
             void display(sf::RenderWindow *window, Player *player);
             void set_position(sf::Vector2f position);
             float get_speed(void);

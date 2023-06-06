@@ -5,6 +5,7 @@ int display(Game *game)
     game->draw_background();
     game->player->view.setCenter(game->player->ship.body.getPosition());
     game->window->setView(game->player->view);
+    game->player->ship.update_info();
     game->player->set_rotation();
     game->player->booster_break();
     game->player->hud.update(&game->player->ship, &game->player->view);

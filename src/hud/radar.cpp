@@ -29,9 +29,11 @@ void Radar::update_direction(Ship *ship, sf::Vector2f radar_position)
 {
     float angle = 0;
     angle = atan2(ship->move_vector.y, ship->move_vector.x) * (180 / M_PI);
-    direction.setPosition(get_circle_position(radar_position, angle, 99));
     angle = atan2(0 - ship->move_vector.y, 0 - ship->move_vector.x) * (180 / M_PI);
-    reverse_direction.setPosition(get_circle_position(radar_position, angle, 99));
+    direction.setPosition(
+        get_circle_position(radar_position, ship->direction_angle, 99));
+    reverse_direction.setPosition(
+        get_circle_position(radar_position, ship->reverse_direction_angle, 99));
 }
 
 void Radar::update(Ship *ship, sf::View *view)

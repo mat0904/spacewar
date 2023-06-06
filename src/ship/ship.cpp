@@ -62,6 +62,12 @@ float Ship::get_speed(void)
     return sqrt(pow(move_vector.x, 2) + pow(move_vector.y, 2));
 }
 
+void Ship::update_info(void)
+{
+    direction_angle = atan2(move_vector.y, move_vector.x) * (180 / M_PI);
+    reverse_direction_angle = atan2(0 - move_vector.y, 0 - move_vector.x) * (180 / M_PI);
+}
+
 void Ship::display(sf::RenderWindow *window, Player *player)
 {
     window->draw(body);

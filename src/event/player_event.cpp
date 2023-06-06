@@ -3,21 +3,21 @@
 static int player_event_pressed(Game *game, sf::Event *event)
 {
     if (event->type == sf::Event::KeyPressed) {
-        if (event->key.code == sf::Keyboard::D) {
+        if (event->key.code == sf::Keyboard::D)
             game->player->d_button = true;
-        }
-        if (event->key.code == sf::Keyboard::Q) {
+        if (event->key.code == sf::Keyboard::Q)
             game->player->q_button = true;
-        }
-        if (event->key.code == sf::Keyboard::Z) {
+        if (event->key.code == sf::Keyboard::Z)
             game->player->z_button = true;
-        }
-        if (event->key.code == sf::Keyboard::S) {
+        if (event->key.code == sf::Keyboard::S)
             game->player->s_button = true;
-        }
-        if (event->key.code == sf::Keyboard::Space) {
+        if (event->key.code == sf::Keyboard::Space)
             game->player->space_button = true;
-        }
+        if (event->key.code == sf::Keyboard::R)
+            game->player->ship.angle = game->player->ship.reverse_direction_angle;
+        if (event->key.code == sf::Keyboard::F)
+            game->player->ship.angle = game->player->ship.direction_angle;
+
     }
     return 0;
 }
