@@ -1,5 +1,4 @@
 #include "../../include/prototype.hpp"
-#include <SFML/System/Vector2.hpp>
 
 Game::Game()
 {

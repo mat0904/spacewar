@@ -5,19 +5,22 @@
     #define GAME_HPP_
 
     class Player;
+    class Ship;
 
     class Radar {
         public:
             sf::CircleShape background;
             sf::VertexArray lines;
-            int balayeur_angle;
-            sf::VertexArray balayeur;
+            sf::CircleShape direction;
+            sf::CircleShape reverse_direction;
 
 
             Radar(void);
             void display(sf::RenderWindow *window);
-            void update(float rotation, sf::View *view);
-            void update_balayeur(sf::View *view);
+            sf::Vector2f get_circle_position(sf::Vector2f radar_pos,
+                float angle, int distance);
+            void update(Ship *ship, sf::View *view);
+            void update_direction(Ship *ship, sf::Vector2f radar_position);
     };
 
     class Hud {
@@ -27,7 +30,7 @@
             Radar radar;
 
             Hud(void);
-            void update(float angle_input, sf::Vector2f mv, sf::View *view);
+            void update(Ship *ship, sf::View *view);
             void display(sf::RenderWindow *window);
     };
 
@@ -46,6 +49,7 @@
             void rotate(void);
             void display(sf::RenderWindow *window, Player *player);
             void set_position(sf::Vector2f position);
+            float get_speed(void);
     };
 
     class Input {

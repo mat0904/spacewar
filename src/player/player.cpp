@@ -30,9 +30,7 @@ void Player::set_rotation(void)
     if (d_button == true) {
         ship.angle += 1;
     }
-    if (q_button == true || d_button == true) {
-        ship.angle = (int)ship.angle % 360;
-    }
+    ship.angle = (int)ship.angle % 360;
     ship.rotate();
 }
 

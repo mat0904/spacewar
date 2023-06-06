@@ -57,6 +57,11 @@ void Ship::set_position(sf::Vector2f position)
     body.setPosition(position);
 }
 
+float Ship::get_speed(void)
+{
+    return sqrt(pow(move_vector.x, 2) + pow(move_vector.y, 2));
+}
+
 void Ship::display(sf::RenderWindow *window, Player *player)
 {
     window->draw(body);

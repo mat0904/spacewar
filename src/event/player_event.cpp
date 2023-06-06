@@ -39,6 +39,10 @@ static int player_event_released(Game *game, sf::Event *event)
             game->player->ship.angle = 0;
         if (event->key.code == sf::Keyboard::Left)
             game->player->ship.angle = 180;
+        if (event->key.code == sf::Keyboard::Down)
+            game->player->ship.angle = 90;
+        if (event->key.code == sf::Keyboard::Up)
+            game->player->ship.angle = 270;
     }
     return 0;
 }
